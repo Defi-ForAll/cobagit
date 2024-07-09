@@ -508,13 +508,8 @@
                              i++;
                         });
                         var tanggal = result.tgl_upload;
-                        var parts = tanggal.split(' ');
-                        var datepart = parts[0];
-                        var timepart = parts[1];
-
-                        // var datetimelocalstring = datepart + 'T' + timepart;
-                        var datetimelocalstring = tanggal.replace(" ", "T").substring(0, 16);
-                        var coba = datetimelocalstring.replace(/-/g,"/");
+                        var datetimelocalstring = tanggal.replace(" ", "T").substring(0, 16); // karena format penulisna yang berbeda jadinya harus diganti dulu dalam bentuk html
+                        var coba = datetimelocalstring.replace(/-/g,"/"); // g artinya global artinya keseluruhan
                         console.log(coba);
                         $('#datetime').val();
 
@@ -758,7 +753,8 @@
                 else if ($('#mdl-label').text() == "Ubah Data Produk") {
                     // ambil data hasil submit dari form dan buat variabel untuk menampung data menggunakan "FormData"
                     var data = new FormData();
-                    // data.append('id_produk', $('#id_produk').val());
+                     var id_produk = data[10];
+                    data.append('id_produk',id_produk);
                     data.append('nama_produk', $('#nama_produk').val());
                     data.append('kategori', $('#kategori').val());
                     data.append('datetime', $('#datetime').val());
@@ -776,6 +772,7 @@
 
 
                     // ajax request untuk update data produk
+                     var id_produk = data[10];
                     $.ajax({
                         type: "POST",               // mengirim data dengan method POST 
                         url: "update.php",          // file proses update data
@@ -790,7 +787,7 @@
                         // fungsi yang dijalankan ketika ajax request berhasil
                         success: function(result) {
                             // jika update data berhasil
-                            if (result === "sukses") {
+                            if (result.trim() === "sukses") {
                                 // memberikan interval waktu sebelum fungsi dijalankan
                                 setTimeout(function() {
                                     // tutup preloader
