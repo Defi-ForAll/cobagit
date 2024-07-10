@@ -67,6 +67,7 @@
                                 <div class="mb-3 col-xl-6 pe-xl-3">
                                     <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
                                     <input type="text" id="nama_produk" name="nama_produk" class="form-control" required>
+                                    <input type="hidden" id="id_produk" name="id_produk" class="form-control" disabled>
                                     <div class="invalid-feedback">Nama tidak boleh kosong.</div>
                                 </div>
                                 <div class="col-xl-6">
@@ -121,7 +122,7 @@
                             ?>
                             <div class="mb-3 pe-xl-3">
                                 <label class="form-label">Tanggal Input</label>
-                                <input type="datetime-local" id="datetime" name="datetime" class="form-control" value="<?php echo $currentdatetime ?>">
+                                <input type="datetime-local" id="datetime" name="datetime" class="form-control" value="<?php echo $currentdatetime ?>" disabled>
                             </div>
                         </div>
                     </div>
@@ -479,6 +480,7 @@
                     // data.append('penyimpanan',f_penyimpanan);
 
                         // tampilkan data ke form
+                        $('#id_produk').val(result.id_produk);
                         $('#nama_produk').val(result.judul);
                         $('#harga').val(result.harga);
                         $('#stok_produk').val(result.stok);
@@ -508,10 +510,10 @@
                              i++;
                         });
                         var tanggal = result.tgl_upload;
-                        var datetimelocalstring = tanggal.replace(" ", "T").substring(0, 16); // karena format penulisna yang berbeda jadinya harus diganti dulu dalam bentuk html
-                        var coba = datetimelocalstring.replace(/-/g,"/"); // g artinya global artinya keseluruhan
-                        console.log(coba);
-                        $('#datetime').val();
+                        var datetimelocalstring = tanggal.replace(" ", "T"); // karena format penulisna yang berbeda jadinya harus diganti dulu dalam bentuk html
+                        // var coba = datetimelocalstring.replace(/-/g,"/"); // g artinya global artinya keseluruhan
+                         console.log(datetimelocalstring);
+                        $('#datetime').val(datetimelocalstring);
 
                         // $('#nama_produk').val(result.nama_produk);
                         // $('#stok').val(result.stok);
@@ -673,6 +675,7 @@
                     data.append('nama_produk', $('#nama_produk').val());
                     data.append('kategori', $('#kategori').val());
                     data.append('datetime', $('#datetime').val());
+                    console.log( $('#datetime').val());
                     data.append('harga', $('#harga').val());
                     data.append('stok_produk', $('#stok_produk').val());
                     data.append('foto1', $('#foto1')[0].files[0]);
@@ -754,7 +757,7 @@
                     // ambil data hasil submit dari form dan buat variabel untuk menampung data menggunakan "FormData"
                     var data = new FormData();
                      var id_produk = data[10];
-                    data.append('id_produk',id_produk);
+                    data.append('id_produk',$('#id_produk').val());
                     data.append('nama_produk', $('#nama_produk').val());
                     data.append('kategori', $('#kategori').val());
                     data.append('datetime', $('#datetime').val());
@@ -787,7 +790,7 @@
                         // fungsi yang dijalankan ketika ajax request berhasil
                         success: function(result) {
                             // jika update data berhasil
-                            if (result.trim() === "sukses") {
+                            if (result.trim() === "sukses") {          
                                 // memberikan interval waktu sebelum fungsi dijalankan
                                 setTimeout(function() {
                                     // tutup preloader
@@ -795,6 +798,15 @@
                                     // tutup modal form
                                     $('#mdl-form').modal('hide');
                                     // tampilkan pesan sukses ubah data
+                                    if($('.preview-container').length){
+                                        $('.preview-container').remove();
+                                    }
+                                    for (var i = 1; i <= 3; i++) {
+                                        var $inputan = '#foto' + i;
+                                        $($inputan).val('');
+                                    }
+                                    
+                                    
                                     $.notify({
                                         title: '<h5 class="font-weight-bold mb-1"><i class="fas fa-check-circle me-2"></i>Sukses!</h5>',
                                         message: 'Data Stok Produk berhasil diubah.'
