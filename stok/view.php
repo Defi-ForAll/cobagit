@@ -267,28 +267,21 @@
         };
 
         // Merubah format input harga ke dalam bentuk currency
-        function formatCurrency(input) {
-            // Remove non-digits and non-decimal characters
-            var value = input.val().replace(/[^\d.-]/g, '');
-            
-            // Replace comma with dot for decimal
-            value = value.replace(/,/g, '.');
-
-            // Format to currency with comma separators and two decimal places
-            input.val(parseFloat(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        }
-
-        $("#harga").keyup(function (event) {
-             // skip for arrow keys
+        function formatCurrency(event) {
+            // skip for arrow keys
             if(event.which >= 37 && event.which <= 40) return;
 
             // format number
-            $(this).val(function(index, value) {
+            $("#harga").val(function(index, value) {
             return value
             .replace(/\D/g, "")
             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
             ;
             });
+        }
+
+        $("#harga").keyup(function (event) {
+             formatCurrency(event);
         });
         
         // mengambil semua kategori dari database
@@ -432,12 +425,13 @@
         });
 
         // Menampilkan Modal Form Ubah Data
-        $('#tabel-produk tbody').on('click', '.btn-ubah', function() {
+        $('#tabel-produk tbody').on('click', '.btn-ubah', function(event) {
             // mengambil data dari datatables 
             var data = table.row($(this).parents('tr')).data();
             // membuat variabel untuk menampung data "id_produk"
             var id_produk = data[10];
             var id_kategori = data[4];
+            
 
             // ajax request untuk mengambil data produk
             $.ajax({
@@ -512,7 +506,7 @@
                         var tanggal = result.tgl_upload;
                         var datetimelocalstring = tanggal.replace(" ", "T"); // karena format penulisna yang berbeda jadinya harus diganti dulu dalam bentuk html
                         // var coba = datetimelocalstring.replace(/-/g,"/"); // g artinya global artinya keseluruhan
-                         console.log(datetimelocalstring);
+                        formatCurrency(event);
                         $('#datetime').val(datetimelocalstring);
 
                         // $('#nama_produk').val(result.nama_produk);
