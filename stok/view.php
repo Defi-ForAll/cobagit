@@ -413,7 +413,7 @@
                              $('#dt_thumbnail').html(foto);
                         });
                         
-                        $('#dt_harga').text(result.harga);
+                        $('#dt_harga').text("Rp. " + result.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
                         $('#dt_kategori').text(result.nama_kategori);
                         $('#dt_deskripsi').text(result.deskripsi);
                         $('#dt_tgl_upload').text(result.tgl_upload);
@@ -847,7 +847,7 @@
             // tampilkan notifikasi saat akan menghapus data
             bootbox.dialog({
                 title: '<i class="fa-regular fa-trash-can me-2"></i> Hapus Data Produk',
-                message: '<p class="mb-2">Anda yakin ingin menghapus data Produk?</p><p class="fw-bold mb-2">' + data[2] + ' - ' + data[3] + '</p>',
+                message: '<p class="mb-2">Anda yakin ingin menghapus data Produk?</p><p class="fw-bold mb-2">' + data[1] + '</p>',
                 closeButton: false,
                 buttons: {
                     cancel: {
@@ -859,7 +859,7 @@
                         className: 'btn-danger rounded-pill px-3',
                         callback: function () {
                             // membuat variabel untuk menampung data "id_produk"
-                            var id_produk = data[1];
+                            var id_produk = data[10];
 
                             // ajax request untuk delete data produk
                             $.ajax({

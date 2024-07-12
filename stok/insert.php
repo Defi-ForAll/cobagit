@@ -17,7 +17,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
     // conversi datetime yang awalnya ada huruf 'T' karena ini adalah inputan dasar
     $waktu_simpan = str_replace('T',' ',$datetime);
     $waktu_simpan = str_replace('/','-',$waktu_simpan);
-    $harga       = $mysqli->real_escape_string(preg_replace('/\D/', '', $_POST['harga']););
+    $harga       = $mysqli->real_escape_string(preg_replace('/\D/', '', $_POST['harga']));
     $stok_produk       = $mysqli->real_escape_string($_POST['stok_produk']);
     $penyimpanan       = $mysqli->real_escape_string($_POST['penyimpanan']);
     $keterangan  = $mysqli->real_escape_string($_POST['keterangan']);
