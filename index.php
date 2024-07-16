@@ -1,5 +1,6 @@
 <?php
     include('header.php');
+    require_once('koneksi.php');
 ?>
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -135,7 +136,6 @@
             </div>
             <div class="row featured__filter">
                 <?php
-                include('koneksi.php');
                 // Ambil data
                 $sql = "SELECT * FROM tbl_produk LIMIT 9";
                 $result = $conn->query($sql);
@@ -145,17 +145,13 @@
             ?>
              <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
         <div class="featured__item">
-            <div class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/gambar/produk/<?php echo $potonggambar[0]; ?>">
-                <ul class="featured__item__pic__hover">
-                    <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-heart"></i></a></li>
-                    <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-share"></i></a></li>
-                    <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-eye"></i></a></li>
-                </ul>
-            </div>
+            <a href="shop-details.php?produk=<?php echo $row['id_produk']; ?>&kat=<?php echo $row['id_kategori'] ?>">
+            <div class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/<?php echo $potonggambar[0]; ?>">            </div>
             <div class="featured__item__text">
                 <h6><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><?php echo $row['judul']; ?></a></h6>
                 <h5><i class="fa fa-star"></i> 4.8 </h5>
             </div>
+            </a>
         </div>
              </div>
         <?php
@@ -416,8 +412,7 @@
                 </div>
             </div>
             <div class="row">
-                <?php 
-                    include('koneksi.php');
+                <?php
                     $sql = "SELECT * FROM tbl_post LIMIT 3";
                     $result = $conn->query($sql);
                 
@@ -427,7 +422,7 @@
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="blog__item">
                                         <div class="blog__item__pic">
-                                            <img src="<?= $row['gambar'] ?>" alt="">
+                                        <a href="blog-details.php?id=<?php echo $row['id_post'] ?>"><img src="<?= $row['gambar'] ?>" alt=""></a>
                                         </div>
                                         <div class="blog__item__text">
                                             <ul>
@@ -462,7 +457,7 @@
                        
                        <?php
                     }
-                    $conn->close();
+                    
                 ?> 
                 
                 

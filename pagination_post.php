@@ -1,5 +1,5 @@
 <?php
-    include('koneksi.php');
+    require_once('koneksi.php');
     $records_per_page = 2; // Jumlah data per halaman
     if (isset($_GET['page']) && is_numeric($_GET['page'])) {
         $current_page = (int) $_GET['page'];

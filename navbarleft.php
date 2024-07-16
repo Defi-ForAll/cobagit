@@ -1,5 +1,5 @@
 <?php
-    include('koneksi.php');
+    require_once('koneksi.php');
 
     $sql = "SELECT * FROM tbl_kategori_produk ORDER BY id_kategori ASC";
     $result = $conn->query($sql);
@@ -11,5 +11,4 @@
     } else {
         echo "<li><a href=`#`>Kategori Tidak di Temukan</a></li>";
     }
-    $conn->close();
 ?>

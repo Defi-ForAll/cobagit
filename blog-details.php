@@ -115,39 +115,9 @@
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                        <img src="<?= $row['gambar'] ?>" alt="">
-                        <p><?= $row['deskripsi'] ?></p>
+                    <a href="blog-details.php?id=<?php echo $row['id_post'] ?>"><img src="<?= $row['gambar'] ?>" alt="">
+                        <p><?= $row['deskripsi'] ?></p></a>
                     </div>
-                    <!-- <div class="blog__details__content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="blog__details__author">
-                                    <div class="blog__details__author__pic">
-                                        <img src="img/blog/details/details-author.jpg" alt="">
-                                    </div>
-                                    <div class="blog__details__author__text">
-                                        <h6>Michael Scofield</h6>
-                                        <span>Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="blog__details__widget">
-                                    <ul>
-                                        <li><span>Kategori:</span> Safety</li>
-                                        <li><span>Tags:</span> All, Trending, Cooking, Healthy Food, Life Style</li>
-                                    </ul>
-                                    <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -176,7 +146,7 @@
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="blog__item">
                                         <div class="blog__item__pic">
-                                            <img src="<?= $row['gambar'] ?>" alt="">
+                                        <a href="blog-details.php?id=<?php echo $row['id_post'] ?>"><img src="<?= $row['gambar'] ?>" alt=""></a>
                                         </div>
                                         <div class="blog__item__text">
                                             <ul>

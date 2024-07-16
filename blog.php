@@ -52,21 +52,6 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
-                        <!-- <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Cari...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div> -->
-                        <!-- <div class="blog__sidebar__item">
-                            <h4>Kategori</h4>
-                            <ul>
-                                <li><a href="#">Semua Kategori</a></li>
-                                <li><a href="#">Safety (20)</a></li>
-                                <li><a href="#">Nasional Informasi (5)</a></li>
-                                <li><a href="#">Internasional Informasi (9)</a></li>
-                            </ul>
-                        </div> -->
                         <div class="blog__sidebar__item">
                             <h4>Inspirasi Terkini</h4>
                             <div class="blog__sidebar__recent">
@@ -92,17 +77,6 @@
                             ?>
                             </div>
                         </div>
-                        <!-- <div class="blog__sidebar__item">
-                            <h4>Sering dicari</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Helm safety</a>
-                                <a href="#">Gembok Laminasi</a>
-                                <a href="#">....</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">
@@ -127,7 +101,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="<?= $row['gambar'] ?>" alt="">
+                                <a href="blog-details.php?id=<?php echo $row['id_post'] ?>"><img src="<?= $row['gambar'] ?>" alt=""></a>
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>

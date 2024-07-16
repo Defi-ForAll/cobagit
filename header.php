@@ -33,51 +33,20 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
+            <a href="./index.php"><img src="img/logo2.png" alt=""></a>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.php">Home</a></li>
-                <li><a href="./shop-grid.php">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="http://localhost/cakrasafety/index.php">Serambinyi</a></li>
+                <li><a href="http://localhost/cakrasafety/shop-grid.php">Beli</a></li>
+                <li><a href="http://localhost/cakrasafety/blog.php">Inspirasi</a></li>
+                <li><a href="http://localhost/cakrasafety/contact.php">Hubungi </a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         <div class="humberger__menu__contact">
             <ul>
@@ -105,22 +74,8 @@
                         <div class="header__top__right">
                             <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa-brands fa-tiktok"></i></a><!-- 
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a> -->
+                                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
                             </div>
-                            <!-- <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div> -->
-                            <!-- <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -136,8 +91,13 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.php">Serambi</a></li>
-                            <li><a href="./shop-grid.php">Beli</a></li>
+                            <li id="menu"><a href="http://localhost/cakrasafety/index.php">Serambi</a></li>
+                            <li id="menu"><a href="http://localhost/cakrasafety/shop-grid.php">Beli</a></li>
+                            <li id="menu"><a href="http://localhost/cakrasafety/blog.php">Inspirasi</a></li>
+                            <li id="menu"><a href="http://localhost/cakrasafety/contact.php">Hubungi </a></li>
+
+                            
+                            <!-- jika kamu membutuhkan dropdown bisa pakai ini -->
                             <!-- <li><a href="#">Safety</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
@@ -146,8 +106,6 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li> -->
-                            <li><a href="./blog.php">Inspirasi</a></li>
-                            <li><a href="./contact.php">Hubungi </a></li>
                         </ul>
                     </nav>
                 </div>

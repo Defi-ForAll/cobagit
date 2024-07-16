@@ -1,7 +1,7 @@
 <?php
     
     include('header.php');
-
+    require_once('koneksi.php');
 ?>
     <!-- Hero Section Begin -->
     <section class="hero hero-normal">
@@ -51,10 +51,9 @@
     <section class="product-details spad">
         <div class="container">
             
-                <?php 
-                    include('koneksi.php');
+                <?php
                     $query = $_GET['query'];
-                    $sql = "SELECT id_produk,merk,judul,deskripsi FROM tbl_produk WHERE merk LIKE '%$query%' OR judul LIKE '%$query%' OR deskripsi LIKE '%$query%'";
+                    $sql = "SELECT * FROM tbl_produk WHERE judul LIKE '%$query%' OR deskripsi LIKE '%$query%' OR tgl_upload LIKE '%$query%'";
                     $result = $conn->query($sql);
                     if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){

@@ -72,6 +72,18 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+        var currentUrl = window.location.href;
+
+        // Select the menu item that matches the current URL
+        $('#menu a').each(function() {
+            if ($(this).attr('href') === currentUrl) {
+                $(this).parent().addClass('active'); // Add 'active' class to parent <li>
+            }
+        });
+    });
+    </script>
 
 
 

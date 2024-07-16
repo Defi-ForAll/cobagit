@@ -1,7 +1,6 @@
 <?php
     $id = $_GET['produk'];
     include('header.php');
-
 ?>
     <!-- Hero Section Begin -->
     <section class="hero hero-normal">
@@ -20,7 +19,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
-                        <?php include('pencarian.php') ?>
+                        <?php  include('pencarian.php') ?>
                     </div>
                 </div>
             </div>
@@ -53,41 +52,35 @@
             <div class="row">
                 <?php 
                     include('koneksi.php');
-                     $sql = "SELECT * FROM tbl_produk WHERE id_produk=$id";
+                     $sql = "SELECT * FROM tbl_produk WHERE id_produk='$id'";
                      $result = $conn->query($sql);
                      $row = $result->fetch_assoc();
                      $potong = explode(";", $row['gambar']);
+                     $potong_thumbnail = explode(";", $row['thumbnail']);
                      $id_kategori_produk = $row['id_kategori'];
                 ?>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="http://localhost/cakrasafety/gambar/produk/<?php echo $potong[0]; ?>" alt="">
+                             <img class="product__details__pic__item--large"
+                                src="http://localhost/cakrasafety/stok/uploads/<?php echo $potong[0]; ?>" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                                src="img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                                src="img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                                src="img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                                src="img/product/details/thumb-4.jpg" alt="">
+                            <?php
+                            for($i=0;$i < count($potong_thumbnail);$i++) {
+                            ?>
+                           
+                            <img data-imgbigurl="http://localhost/cakrasafety/stok/uploads/thumbs/<?=$potong_thumbnail[$i] ?>"
+                                src="http://localhost/cakrasafety/stok/uploads/thumbs/<?=$potong_thumbnail[$i] ?>" alt="">
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3><?php echo $row['judul']; ?></h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div>
                         <!-- <div class="product__details__price">$50.00</div> -->
                         <p><?php echo $row['deskripsi']; ?></p>
                         <!-- <div class="product__details__quantity">
@@ -102,7 +95,6 @@
                         <ul>
                             <!-- <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li> -->
-                            <li><b>Berat</b> <span>0.5 kg</span></li>
                             <li><b>Belanja Di</b>
                                 <div class="share">
                                     <a href="#"><img src="img/ecommerce/shopee.png" alt=""  srcset=""></a>
@@ -176,18 +168,16 @@
             </div>
             <div class="row">
             <?php
-                
+                include('koneksi.php');
                 $sql2 = "SELECT * FROM tbl_produk WHERE id_kategori=$id_kategori_produk LIMIT 3";
-                $result2 = $conn->query($sql2);
-                $row2 = $result2->fetch_assoc();
-               
+                $result2 = $conn->query($sql2);               
                 if($result2->num_rows > 0){
                 while($row2 = $result2->fetch_assoc()){
-                    $potong = explode(";", $row2['gambar']);
+                     $potong2 = explode(";", $row2['thumbnail']);
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="http://localhost/cakrasafety/gambar/produk/<?php echo $potong[0]; ?>" alt="">
+                    <div class="product__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/thumbs/<?php  echo $potong2[0]; ?>" alt="">
                         <ul class="product__item__pic__hover">
                             <li><a href="?produk=<?php echo $row2['id_produk'] ?>"><i class="fa fa-heart"></i></a></li>
                             <li><a href="?produk=<?php echo $row2['id_produk'] ?>"><i class="fa fa-retweet"></i></a></li>
