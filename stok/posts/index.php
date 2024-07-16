@@ -1,17 +1,6 @@
-<!-- Aplikasi CRUD dengan PHP 8, MySQL 8, Bootstrap 5, dan jQuery AJAX
-***********************************************************************
-* Developer   : Indra Styawantoro
-* Company     : Pustaka Koding
-* Release     : September 2023
-* Update      : -
-* Website     : pustakakoding.com
-* E-mail      : pustaka.koding@gmail.com
-* WhatsApp    : +62-813-7778-3334
--->
-
 <?php
 // panggil file "database.php" untuk koneksi ke database
-require_once "config/database.php";
+require_once "../config/database.php";
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +17,7 @@ require_once "config/database.php";
     <title>Aplikasi Cakra Safety</title>
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -43,7 +32,7 @@ require_once "config/database.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" integrity="sha512-MQXduO8IQnJVq1qmySpN87QQkiR1bZHtorbJBD0tzy7/0U9+YIC93QWHeGTEoojMVHWWNkoCp8V6OzVSYrX0oQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     
     <!-- jQuery Core -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -53,7 +42,7 @@ require_once "config/database.php";
     <!-- Preloader -->
     <div style="display: none;" class="preloader">
         <div class="loading">
-            <img src="assets/img/spinner-loading.gif" alt="Loading" width="200">
+            <img src="../assets/img/spinner-loading.gif" alt="Loading" width="200">
         </div>
     </div>
 
@@ -129,8 +118,8 @@ require_once "config/database.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Custom Scripts -->
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/form-validation.js"></script>
+    <script src="../assets/js/plugins.js"></script>
+    <script src="../assets/js/form-validation.js"></script>
 </body>
 
 </html>

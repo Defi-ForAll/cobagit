@@ -30,14 +30,12 @@
         <table id="tabel-produk" class="table table-bordered table-striped table-hover" style="width:100%">
             <thead class="table-light">
                 <th class="text-center">NO.</th>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Gambar</th>
-                <th class="text-center">Harga</th>
-                <th class="text-center">Kategori</th>
+                <th class="text-center">ID POST</th>
+                <th class="text-center">Judul</th>
                 <th class="text-center">Deskripsi</th>
-                <th class="text-center">Tanggal Upload</th>
-                <th class="text-center">Stok</th>
-                <th class="text-center">Tempat Simpan</th>
+                <th class="text-center">Pembuat</th>
+                <th class="text-center">Tanggak Upload</th>
+                <th class="text-center">Gambar</th>
                 <th class="text-center">Aksi</th>
             </thead>
         </table>
@@ -66,46 +64,35 @@
                                     <div class="invalid-feedback">Id Produk tidak boleh kosong.</div>
                                 </div> -->
                                 <div class="mb-3 col-xl-6 pe-xl-3">
-                                    <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
+                                    <label class="form-label">Judul<span class="text-danger">*</span></label>
                                     <input type="text" id="nama_produk" name="nama_produk" class="form-control" required>
                                     <input type="hidden" id="id_produk" name="id_produk" class="form-control" disabled>
-                                    <div class="invalid-feedback">Nama tidak boleh kosong.</div>
+                                    <div class="invalid-feedback">Judul Tidak Boleh Kosong.</div>
                                 </div>
-                                <div class="col-xl-6">
-                                    <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                                    <select id="kategori" name="kategori" class="form-select" autocomplete="off" required>
-                                        <option selected disabled value="">-- Pilih --</option>
-                                    </select>
-                                    <div class="invalid-feedback">Kategori tidak boleh kosong.</div>
+                                 <div class="col-xl-6">
+                                    <label class="form-label">Nama Pembuat</label>
+                                    <input type="text" id="stok_produk" name="stok_produk" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xl-4">
-                                    <label for="foto1" class="form-label">Foto Utama <span class="text-danger">*</span></label>
+                                    <label for="foto1" class="form-label">Gambar<span class="text-danger">*</span></label>
                                     <input type="file" accept=".jpg, .jpeg, .png" id="foto1" name="foto1" class="form-control" autocomplete="off" required>
-                                    <div class="invalid-feedback">Foto Utama tidak boleh kosong.</div>
+                                    <div class="invalid-feedback">Gambar tidak boleh kosong.</div>
                                     <div id="foto_preview_1">
                                     <!-- container foto untuk prefiew -->
                                     </div>
                                 </div>
-                                <div class="col-xl-4">
-                                    <label for="foto2" class="form-label">Foto Kedua<span class="text-danger">*</span></label>
-                                    <input type="file" accept=".jpg, .jpeg, .png" id="foto2" name="foto2" class="form-control" autocomplete="off" required>
-                                    <div class="invalid-feedback">Foto Kedua tidak boleh kosong.</div>
-
-                                    <div id="foto_preview_2">
-                                    <!-- container foto untuk prefiew -->
+                                <div class="col-xl-6">
+                                    <?php 
+                                        //fungsi untuk mengambil timestamp
+                                        $currentdatetime = date('Y-m-d');
+                                    ?>
+                                    <div class="mb-3 pe-xl-3">
+                                        <label class="form-label">Tanggal Input</label>
+                                        <input type="date" id="datetime" name="datetime" class="form-control" value="<?php echo $currentdatetime ?>" disabled>
                                     </div>
                                 </div>
-                                <div class="col-xl-4">
-                                    <label for="foto3" class="form-label">Foto Ketiga<span class="text-danger">*</span></label>
-                                    <input type="file" accept=".jpg, .jpeg, .png" id="foto3" name="foto3" class="form-control" autocomplete="off" required>
-                                    <div class="invalid-feedback">Foto Ketiga tidak boleh kosong.</div>
-                                    <div id="foto_preview_3">
-                                    <!-- container foto untuk prefiew -->
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -117,49 +104,11 @@
                             <textarea id="keterangan" name="keterangan" rows="2" class="form-control" autocomplete="off" required></textarea>
                             <div class="invalid-feedback">Keterangan tidak boleh kosong.</div>
                         </div>
-                        <div class="col-xl-6">
-                            <?php 
-                                //fungsi untuk mengambil timestamp
-                                $currentdatetime = date('Y-m-d H:i:s');
-                            ?>
-                            <div class="mb-3 pe-xl-3">
-                                <label class="form-label">Tanggal Input</label>
-                                <input type="datetime-local" id="datetime" name="datetime" class="form-control" value="<?php echo $currentdatetime ?>" disabled>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
-                        <div class="mb-3 col-xl-6 pe-xl-3">
-                            <div class="mb-3 pe-xl-3">
-                                <label class="form-label">Harga Produk <span class="text-danger">*</span></label>    
-                                <div class="input-group mb-3 pe-xl-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Rp. </span>
-                                    </div>
-                                    <input type="text" id="harga" class="form-control" required>
-                                </div>
-                                <div class="invalid-feedback">Harga tidak boleh kosong.</div>
-                            </div>
-                        </div>
                         <div class="col-xl-6">
                 <div class="row">
-                    <div class="col-xl-6">
-                        <label class="form-label">Stok <span class="text-danger">*</span></label>
-                        <input type="number" id="stok_produk" name="stok_produk" class="form-control" required>
-                        <div class="invalid-feedback">Stok tidak boleh kosong.</div>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Tempat Penyimpanan <span class="text-danger">*</span></label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="option1" name="penyimpanan" value="gudang">
-                            <label class="form-check-label" for="option1">Gudang</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="option2" name="penyimpanan" value="toko">
-                            <label class="form-check-label" for="option2">Toko</label>
-                        </div><br>
-                        <div class="invalid-feedback">Pilih Setidaknya 1</div>
-                    </div>
+                   
                 </div>
             </div>
                     </div>
@@ -207,12 +156,12 @@
                                     <td id="dt_thumbnail"></td>
                                 </tr>
                                 <tr>
-                                    <td>Harga</td>
+                                    <td>Tanggal</td>
                                     <td>:</td>
                                     <td id="dt_harga"></td>
                                 </tr>
                                 <tr>
-                                    <td>Kategori</td>
+                                    <td>Nama Pembuat</td>
                                     <td>:</td>
                                     <td id="dt_kategori"></td>
                                 </tr>
@@ -220,21 +169,6 @@
                                     <td>Deskripsi</td>
                                     <td>:</td>
                                     <td id="dt_deskripsi"></td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal Upload</td>
-                                    <td>:</td>
-                                    <td id="dt_tgl_upload"></td>
-                                </tr>
-                                <tr>
-                                    <td>Stok</td>
-                                    <td>:</td>
-                                    <td id="dt_stok"></td>
-                                </tr>
-                                <tr>
-                                    <td>Tempat Simpan</td>
-                                    <td>:</td>
-                                    <td id="dt_tmpt_simpan"></td>
                                 </tr>
                             </table>
                         </div>
@@ -287,20 +221,6 @@
         });
         
         // mengambil semua kategori dari database
-        $.ajax({
-                url: 'get_kategori.php',
-                type: 'GET',
-                success: function(response) {
-                    const data = JSON.parse(response);
-                    const select = $('#kategori');
-                    data.forEach(item => {
-                        select.append(`<option value="${item.id_kategori}">${item.nama_kategori}</option>`);
-                    });
-                },
-                error: function() {
-                    alert('Failed to fetch data.');
-                }
-        });
 
         // Menampilkan data dengan datatables serverside processing
         var table = $('#tabel-produk').DataTable( {
@@ -311,14 +231,12 @@
             "columnDefs": [ 
                 { "targets": 0, "data": null, "orderable": false, "searchable": false, "width": '30px', "className": 'text-center' },
                 { "targets": 1, "width": "50px", "className": "text-center" },
-                { "targets": 2, "width": "70px", "className": "text-center", "visible":false },
-                { "targets": 3, "width": "70px", "className": "text-center" },
+                { "targets": 2, "width": "70px", "className": "text-center" },
+                { "targets": 3, "width": "70px", "className": "text-center", "visible":false  },
                 { "targets": 4, "width": "80px", "className": "text-center" },
                 { "targets": 5, "width": "80px", "className": "text-center" },
-                { "targets": 6, "width": "80px", "className": "text-center" },
-                { "targets": 7, "width": "80px", "className": "text-center" },
-                { "targets": 8, "width": "80px", "className": "text-center" },
-                { "targets": 9, "data": null, "orderable": false, "searchable": false, "width": '140px', "className": 'text-center',
+                { "targets": 6, "width": "80px", "className": "text-center" , "visible":false },
+                { "targets": 7, "data": null, "orderable": false, "searchable": false, "width": '140px', "className": 'text-center',
                     // button detail, ubah, dan hapus data
                     "render": function(data, type, row) {
                         var btn = "<a class=\"btn btn-warning btn-sm rounded-pill px-3 me-2 mb-1 btn-detail\" href=\"javascript:void(0);\">Detail</a><a class=\"btn btn-primary btn-sm rounded-pill px-3 me-2 mb-1 btn-ubah\" href=\"javascript:void(0);\">Ubah</a><a class=\"btn btn-danger btn-sm rounded-pill px-3 mb-1 btn-hapus\" href=\"javascript:void(0);\">Hapus</a>";
@@ -326,7 +244,7 @@
                     } 
                 },
                 {
-                    "targets": 10, // Index of the primary key column
+                    "targets": 1, // Index of the primary key column
                     "orderable": false,
                     "searchable": false,
                     "visible": false, // This hides the primary key
