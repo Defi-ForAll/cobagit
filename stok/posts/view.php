@@ -20,7 +20,7 @@
 <div class="d-grid gap-2 d-md-block bg-white rounded-4 shadow-sm p-4 mb-3">
     <!-- button entri data -->
     <button id="btn-entri" class="btn btn-primary rounded-pill py-2 px-4">
-        <i class="fa-solid fa-plus me-2"></i> Entri Produk
+        <i class="fa-solid fa-plus me-2"></i> Buat Postingan
     </button>
 </div>
 
@@ -65,13 +65,13 @@
                                 </div> -->
                                 <div class="mb-3 col-xl-6 pe-xl-3">
                                     <label class="form-label">Judul<span class="text-danger">*</span></label>
-                                    <input type="text" id="nama_produk" name="nama_produk" class="form-control" required>
-                                    <input type="hidden" id="id_produk" name="id_produk" class="form-control" disabled>
+                                    <input type="text" id="nama_judul" name="nama_judul" class="form-control" required>
+                                    <input type="hidden" id="id_post" name="id_post" class="form-control" disabled>
                                     <div class="invalid-feedback">Judul Tidak Boleh Kosong.</div>
                                 </div>
                                  <div class="col-xl-6">
                                     <label class="form-label">Nama Pembuat</label>
-                                    <input type="text" id="stok_produk" name="stok_produk" class="form-control">
+                                    <input type="text" id="nama_pembuat" name="nama_pembuat" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
@@ -79,7 +79,7 @@
                                     <label for="foto1" class="form-label">Gambar<span class="text-danger">*</span></label>
                                     <input type="file" accept=".jpg, .jpeg, .png" id="foto1" name="foto1" class="form-control" autocomplete="off" required>
                                     <div class="invalid-feedback">Gambar tidak boleh kosong.</div>
-                                    <div id="foto_preview_1">
+                                    <div id="foto_preview">
                                     <!-- container foto untuk prefiew -->
                                     </div>
                                 </div>
@@ -148,22 +148,22 @@
                                 <tr>
                                     <td>Judul</td>
                                     <td>:</td>
-                                    <td id="dt_nama"></td>
+                                    <td id="dt_judul"></td>
                                 </tr>
                                 <tr>
                                     <td>Gambar</td>
                                     <td>:</td>
-                                    <td id="dt_thumbnail"></td>
+                                    <td id="dt_gambar"></td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal</td>
                                     <td>:</td>
-                                    <td id="dt_harga"></td>
+                                    <td id="dt_tanggal"></td>
                                 </tr>
                                 <tr>
                                     <td>Nama Pembuat</td>
                                     <td>:</td>
-                                    <td id="dt_kategori"></td>
+                                    <td id="dt_author"></td>
                                 </tr>
                                 <tr>
                                     <td>Deskripsi</td>
@@ -201,26 +201,6 @@
                 "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
             };
         };
-
-        // Merubah format input harga ke dalam bentuk currency
-        function formatCurrency(event) {
-            // skip for arrow keys
-            if(event.which >= 37 && event.which <= 40) return;
-
-            // format number
-            $("#harga").val(function(index, value) {
-            return value
-            .replace(/\D/g, "")
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-            ;
-            });
-        }
-
-        $("#harga").keyup(function (event) {
-             formatCurrency(event);
-        });
-        
-        // mengambil semua kategori dari database
 
         // Menampilkan data dengan datatables serverside processing
         var table = $('#tabel-produk').DataTable( {
@@ -278,7 +258,7 @@
             // tampilkan modal form
             $('#mdl-form').modal('show');
             // judul form
-            $('#mdl-label').text('Entri Data Produk');
+            $('#mdl-label').text('Buat Postingan Baru');
             // reset form
             $('#frm-produk')[0].reset();
             // hapus class was-validated pada form
@@ -301,14 +281,14 @@
             // mengambil data dari datatables 
             var data = table.row($(this).parents('tr')).data();
             // membuat variabel untuk menampung data "id_produk"
-            var id_produk = data[10];
-            var id_kategori = data[4];
+            var id_post = data[1];
+            console.log(id_post);
 
             // ajax request untuk mengambil data produk
             $.ajax({
                 type: "GET",                        // mengirim data dengan method GET 
                 url: "get_data.php",                // file proses get data
-                data: { id_produk: id_produk, id_kategori: id_kategori },       // data yang dikirim
+                data: { id_post: id_post},       // data yang dikirim
                 dataType: "JSON",                   // menggunakan tipe data JSON
                 // fungsi yang dijalankan sebelum ajax request dikirim
                 beforeSend: function() {
@@ -325,22 +305,29 @@
                         $('#mdl-form-detail').modal('show');
 
                         // tampilkan data ke form
-                        $('#dt_nama').text(result.judul);
-                        var dataArray = result.thumbnail.split(';');
-                        var foto = '';
-                        dataArray.forEach(function(item){
-                             foto += "<img src=\"uploads/thumbs/" + item.trim() + "\" class=\"border border-2 img-fluid rounded-3\" width=\"70px\" height=\"70px\">";
-                             $('#dt_thumbnail').html(foto);
-                        });
-                        
-                        $('#dt_harga').text("Rp. " + result.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
-                        $('#dt_kategori').text(result.nama_kategori);
+                        $('#dt_judul').text(result.judul);
+                        // var foto = "<img src=\"uploads/thumbs/" + result.gambar + "\" class=\"border border-2 img-fluid rounded-3\" width=\"70px\" height=\"70px\">";
+                        // $('#dt_gambar').html(foto);                        
+                        $('#dt_gambar').text();
+                        $('#dt_author').text(result.creator);
                         $('#dt_deskripsi').text(result.deskripsi);
-                        $('#dt_tgl_upload').text(result.tgl_upload);
-                        $('#dt_stok').text(result.stok);
-                        $('#dt_tmpt_simpan').text(result.tmpt_simpan);
+                        $('#dt_tanggal').text(result.tgl_upload);
                     }, 500);
-                }
+        },
+        // fungsi yang dijalankan ketika ajax request gagal
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ' + status + ' ' + error);
+            console.error('Response Text: ' + xhr.responseText);
+            // tampilkan pesan kesalahan di modal atau elemen lain
+            $('#mdl-form-detail').modal('show');
+            $('#dt_judul').text('Error');
+            $('#dt_deskripsi').text('Terjadi kesalahan saat mengambil data.');
+            $('#dt_tanggal').text('');
+            $('#dt_author').text('');
+            $('#dt_gambar').html('<p style="color: red;">'+xhr.responseText+'</p>');
+            // tutup preloader jika terjadi kesalahan
+            $('.preloader').fadeOut('fast');
+        }
             });
         });
 
