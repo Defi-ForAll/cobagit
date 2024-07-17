@@ -37,7 +37,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li><a href="http://localhost/cakrasafety/index.php">Serambinyi</a></li>
+                <li><a href="http://localhost/cakrasafety/index.php">Serambi</a></li>
                 <li><a href="http://localhost/cakrasafety/shop-grid.php">Beli</a></li>
                 <li><a href="http://localhost/cakrasafety/blog.php">Inspirasi</a></li>
                 <li><a href="http://localhost/cakrasafety/contact.php">Hubungi </a></li>

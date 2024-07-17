@@ -65,7 +65,7 @@
                                 </div> -->
                                 <div class="mb-3 col-xl-6 pe-xl-3">
                                     <label class="form-label">Judul<span class="text-danger">*</span></label>
-                                    <input type="text" id="nama_judul" name="nama_judul" class="form-control" required>
+                                    <input type="text" id="judul" name="judul" class="form-control" required>
                                     <input type="hidden" id="id_post" name="id_post" class="form-control" disabled>
                                     <div class="invalid-feedback">Judul Tidak Boleh Kosong.</div>
                                 </div>
@@ -76,8 +76,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-xl-4">
-                                    <label for="foto1" class="form-label">Gambar<span class="text-danger">*</span></label>
-                                    <input type="file" accept=".jpg, .jpeg, .png" id="foto1" name="foto1" class="form-control" autocomplete="off" required>
+                                    <label for="foto" class="form-label">Gambar<span class="text-danger">*</span></label>
+                                    <input type="file" accept=".jpg, .jpeg, .png" id="foto" name="foto" class="form-control" autocomplete="off" required>
                                     <div class="invalid-feedback">Gambar tidak boleh kosong.</div>
                                     <div id="foto_preview">
                                     <!-- container foto untuk prefiew -->
@@ -100,8 +100,8 @@
                     <hr class="mb-4-2">
                     <div class="row">
                         <div class="col-xl-6">
-                            <label class="form-label">Keterangan <span class="text-danger">*</span></label>
-                            <textarea id="keterangan" name="keterangan" rows="2" class="form-control" autocomplete="off" required></textarea>
+                            <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
+                            <textarea id="deskripsi" name="deskripsi" rows="10" cols="10" class="form-control" autocomplete="off" required></textarea>
                             <div class="invalid-feedback">Keterangan tidak boleh kosong.</div>
                         </div>
                     </div>
@@ -265,8 +265,6 @@
             $("#frm-produk").removeClass('was-validated');
             // tampilkan data "id_produk"
             // $('#id_produk').val(result);
-
-            
                         
         });
 
@@ -288,7 +286,7 @@
             $.ajax({
                 type: "GET",                        // mengirim data dengan method GET 
                 url: "get_data.php",                // file proses get data
-                data: { id_post: id_post},       // data yang dikirim
+                data: {id_post: id_post},       // data yang dikirim
                 dataType: "JSON",                   // menggunakan tipe data JSON
                 // fungsi yang dijalankan sebelum ajax request dikirim
                 beforeSend: function() {
@@ -336,15 +334,14 @@
             // mengambil data dari datatables 
             var data = table.row($(this).parents('tr')).data();
             // membuat variabel untuk menampung data "id_produk"
-            var id_produk = data[10];
-            var id_kategori = data[4];
+            var id_post = data[1];
             
 
             // ajax request untuk mengambil data produk
             $.ajax({
                 type: "GET",                        // mengirim data dengan method GET 
                 url: "get_data.php",                // file proses get data
-                data: { id_produk: id_produk, id_kategori:id_kategori },       // data yang dikirim
+                data: {id_produk: id_produk},       // data yang dikirim
                 dataType: "JSON",                   // menggunakan tipe data JSON
                 // fungsi yang dijalankan sebelum ajax request dikirim
                 beforeSend: function() {
@@ -364,61 +361,13 @@
                         // hapus class was-validated pada form
                         $("#frm-produk").removeClass('was-validated');
 
-
-                    //     data.append('nama_produk', $('#nama_produk').val());
-                    // data.append('kategori', $('#kategori').val());
-                    // data.append('datetime', $('#datetime').val());
-                    // data.append('harga', $('#harga').val());
-                    // data.append('stok_produk', $('#stok_produk').val());
-                    // data.append('foto1', $('#foto1')[0].files[0]);
-                    // data.append('foto2', $('#foto2')[0].files[0]);
-                    // data.append('foto3', $('#foto3')[0].files[0]);
-                    // data.append('keterangan', $('#keterangan').val());
-                    // let f_penyimpanan = [];
-                    // $('input[name="penyimpanan"]:checked').each(function(){
-                    //     f_penyimpanan.push($(this).val());
-                    // });
-                    // data.append('penyimpanan',f_penyimpanan);
-
                         // tampilkan data ke form
-                        $('#id_produk').val(result.id_produk);
-                        $('#nama_produk').val(result.judul);
-                        $('#harga').val(result.harga);
-                        $('#stok_produk').val(result.stok);
-                        $('#keterangan').val(result.deskripsi);
-                        $('#kategori').val(result.id_kategori);
-
-                        // untuk checkbox agar tercentang
-                        var dataArray = result.tmpt_simpan.split(',');
-                        $('input[name="penyimpanan"]').each(function(){
-                            var checkboxValue = $(this).val();
-                            if (dataArray.includes(checkboxValue)) {
-                                $(this).prop('checked', true);
-                            } else {
-                                $(this).prop('checked', false);
-                            }
-                        });
-                        // }
-                        var dataArray = result.thumbnail.split(';');
-                        var foto = '';
-                        var i = 1;
-                        dataArray.forEach(function(item){
-                             // foto = "<img src=\"uploads/thumbs/" + item.trim() + "\" class=\"border border-2 img-fluid rounded-3\" width=\"70px\" height=\"70px\">";
-                             foto = "uploads/thumbs/" + item.trim();
-                             $preview = '#foto_preview_'+i;
-                             $inputan = '';
-                             $($preview).html(preview_gambar($inputan,foto));
-                             i++;
-                        });
-                        var tanggal = result.tgl_upload;
-                        var datetimelocalstring = tanggal.replace(" ", "T"); // karena format penulisna yang berbeda jadinya harus diganti dulu dalam bentuk html
-                        // var coba = datetimelocalstring.replace(/-/g,"/"); // g artinya global artinya keseluruhan
-                        formatCurrency(event);
-                        $('#datetime').val(datetimelocalstring);
-
-                        // $('#nama_produk').val(result.nama_produk);
-                        // $('#stok').val(result.stok);
-                        // 
+                        $('#id_post').val(result.id_post);
+                        $('#judul').val(result.judul);
+                        $('#nama_pembuat').val(result.creator);
+                        $('#foto').val(result.gambar);
+                        $('#datetime').val(result.tgl_upload);
+                        $('#deskripsi').val(result.deskripsi);
                     }, 500);
                 }
             });
@@ -526,22 +475,6 @@
 
             }
         }
-        // ketika foto 1-2-3 di klik akan memanggil fungsi input_image
-        $('#foto1').change(function(){
-            $inputan = '#foto1';
-            $preview = '#foto_preview_1';
-            return input_gambar($inputan, $preview);
-        });
-        $('#foto2').change(function(){
-            $inputan = '#foto2';
-            $preview = '#foto_preview_2';
-            return input_gambar($inputan, $preview);
-        });
-        $('#foto3').change(function(){
-            $inputan = '#foto3';
-            $preview = '#foto_preview_3';
-            return input_gambar($inputan, $preview);
-        });
          
 
         /** Proses
@@ -561,7 +494,6 @@
                 event.stopPropagation()
                 // menampilkan pesan warning pada tempat penyimpanan
                 $('.invalid-feedback').css({'display' : 'inline'});
-                console.log('akuuu');
                 
             } 
             // jika tidak ada input (required) yang kosong, jalankan perintah insert / update data
@@ -572,31 +504,12 @@
                 if ($('#mdl-label').text() == "Entri Data Produk") {
                     // ambil data hasil submit dari form dan buat variabel untuk menampung data menggunakan "FormData"
                     var data = new FormData();
-                    // data.append('id_produk', $('#id_produk').val());
-                    data.append('nama_produk', $('#nama_produk').val());
-                    data.append('kategori', $('#kategori').val());
+                    data.append('id_post', $('#id_post').val());
+                    data.append('judul', $('#judul').val());
                     data.append('datetime', $('#datetime').val());
-                    console.log( $('#datetime').val());
-                    data.append('harga', $('#harga').val());
-                    data.append('stok_produk', $('#stok_produk').val());
-                    data.append('foto1', $('#foto1')[0].files[0]);
-                    data.append('foto2', $('#foto2')[0].files[0]);
-                    data.append('foto3', $('#foto3')[0].files[0]);
-                    data.append('keterangan', $('#keterangan').val());
-                    let f_penyimpanan = [];
-                    $('input[name="penyimpanan"]:checked').each(function(){
-                        f_penyimpanan.push($(this).val());
-                    });
-                    data.append('penyimpanan',f_penyimpanan);
-
-                    // let id_produk = $('#id_produk').val();
-                    // let nama_produk = $('#nama_produk').val();
-                    // let kategori = $('#kategori').val();
-                    // let tanggal = $('#datetime').val();
-                    // let harga = $('#harga').val();
-                    // let stok = $('#stok_produk').val();
-                    
-
+                    data.append('nama_pembuat', $('#nama_pembuat').val());
+                    data.append('deskripsi', $('#deskripsi').val());
+                    data.append('foto', $('#foto')[0].files[0]);
                    // ajax request untuk insert data produk
                     $.ajax({
                         type: "POST",               // mengirim data dengan method POST 

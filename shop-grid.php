@@ -65,15 +65,15 @@
                                 <div class="latest-product__slider owl-carousel">
                                     <div class="latest-prdouct__slider__item">
                                         <?php 
-                                             $sql_produk = "SELECT * FROM tbl_produk WHERE id_kategori = '1' LIMIT 3";
+                                             $sql_produk = "SELECT * FROM tbl_produk WHERE id_kategori = '4' LIMIT 3";
                                              $result_produk = $conn->query($sql_produk);
                                             if($result_produk->num_rows > 0){
                                                 while($row_produk = $result_produk->fetch_assoc()){
-                                                $potong = explode(";", $row_produk['gambar']);
+                                                $potong = explode(";", $row_produk['thumbnail']);
                                         ?>
                                         <a href="shop-details.php?produk=<?php echo $row_produk['id_produk'] ?>" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="http://localhost/cakrasafety/stok/uploads/<?php echo $potong[0]; ?>" alt="">
+                                                <img src="http://localhost/cakrasafety/stok/uploads/thumbs/<?php echo $potong[0]; ?>" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $row_produk['judul'] ?></h6>
@@ -89,11 +89,11 @@
                                              $result_produk = $conn->query($sql_produk);
                                             if($result_produk->num_rows > 0){
                                                 while($row_produk = $result_produk->fetch_assoc()){
-                                                $potong = explode(";", $row_produk['gambar']);
+                                                $potong = explode(";", $row_produk['thumbnail']);
                                         ?>
                                         <a href="shop-details.php?produk=<?php echo $row_produk['id_produk'] ?>" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="http://localhost/cakrasafety/stok/uploads/<?php echo $potong[0]; ?>" alt="">
+                                                <img src="http://localhost/cakrasafety/stok/uploads/thumbs/<?php echo $potong[0]; ?>" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $row_produk['judul'] ?></h6>
@@ -159,24 +159,17 @@
                             $result = $conn->query($sql);
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_assoc()){
-                                $potonggambar =  explode(";", $row['gambar']);
+                                $potonggambar =  explode(";", $row['thumbnail']);
                         ?>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                            <a href="shop-details.php?produk=<?php echo $row['id_produk']; ?>&kat=<?php echo $row['id_kategori'] ?>">
-                                <div class="product__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/<?php echo $potonggambar[0]; ?>">
-                                    <!-- <ul class="product__item__pic__hover">
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul> -->
+                        <div class="col-lg-2 col-md-2 col-sm-6 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                <a href="shop-details.php?produk=<?php echo $row['id_produk']; ?>&kat=<?php echo $row['id_kategori'] ?>">
+                                <div style="max-height: 150px; border-radius:10px" class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/thumbs/<?php echo $potonggambar[0]; ?>">            </div>
+                                <div class="featured__item__text">
+                                    <h6><b><?php echo $row['judul']; ?></b></h6>
+                                    <!-- <h5><i class="fa fa-star"></i> 4.8 </h5> -->
                                 </div>
-                           
-                                <div class="product__item__text">
-                                    <h6><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><?php echo $row['judul']; ?></a></h6>
-                                    <!-- <h5>$30.00</h5> -->
-                                </div>
-                            </a>
+                                </a>
                             </div>
                         </div>
                         <?php
@@ -245,21 +238,17 @@
                             $result = $conn->query($sql);
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_assoc()){
-                                $potonggambar =  explode(";", $row['gambar']);
+                                $potonggambar =  explode(";", $row['thumbnail']);
                         ?>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/<?php echo $potonggambar[0]; ?>">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
+                       <div class="col-lg-2 col-md-2 col-sm-6 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                <a href="shop-details.php?produk=<?php echo $row['id_produk']; ?>&kat=<?php echo $row['id_kategori'] ?>">
+                                <div style="max-height: 150px; border-radius:10px" class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/thumbs/<?php echo $potonggambar[0]; ?>">            </div>
+                                <div class="featured__item__text">
+                                    <h6><b><?php echo $row['judul']; ?></b></h6>
+                                    <!-- <h5><i class="fa fa-star"></i> 4.8 </h5> -->
                                 </div>
-                                <div class="product__item__text">
-                                    <h6><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><?php echo $row['judul']; ?></a></h6>
-                                    <!-- <h5>$30.00</h5> -->
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <?php

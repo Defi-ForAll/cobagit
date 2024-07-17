@@ -61,8 +61,8 @@
                 ?>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                             <img class="product__details__pic__item--large"
+                        <div class="product__details__pic__item" >
+                             <img style="max-height: 400px; width: 60%;"  class="product__details__pic__item--large"
                                 src="http://localhost/cakrasafety/stok/uploads/<?php echo $potong[0]; ?>" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
@@ -70,7 +70,7 @@
                             for($i=0;$i < count($potong_thumbnail);$i++) {
                             ?>
                            
-                            <img data-imgbigurl="http://localhost/cakrasafety/stok/uploads/thumbs/<?=$potong_thumbnail[$i] ?>"
+                            <img data-imgbigurl="http://localhost/cakrasafety/stok/uploads/<?=$potong[$i] ?>"
                                 src="http://localhost/cakrasafety/stok/uploads/thumbs/<?=$potong_thumbnail[$i] ?>" alt="">
                             <?php
                             }
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <a href="#" class="primary-btn">Salin Link Kami</a>
+                        <!-- <a href="#" class="primary-btn">Salin Link Kami</a> -->
                         <!-- <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a> -->
                         <ul>
                             <!-- <li><b>Availability</b> <span>In Stock</span></li>
@@ -177,17 +177,14 @@
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
+                    <a href="?produk=<?php echo $row2['id_produk'] ?>">
                     <div class="product__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/thumbs/<?php  echo $potong2[0]; ?>" alt="">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="?produk=<?php echo $row2['id_produk'] ?>"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="?produk=<?php echo $row2['id_produk'] ?>"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="?produk=<?php echo $row2['id_produk'] ?>"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="?produk=<?php echo $row2['id_produk'] ?>"><?php echo $row2['judul'] ?></a></h6>
+                        <h6><b><?php echo $row2['judul'] ?></b></h6>
                         <!-- <h5>$30.00</h5> -->
                     </div>
+                    </a>
                 </div>
                 </div>
             <?php

@@ -4,7 +4,7 @@
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
     // panggil file "config.php" untuk koneksi ke database
     require_once "config/config.php";
-    require_once "config/image_uploads.php";
+    // require_once "config/image_uploads.php";
 
     // membuat id_unik
     $timestamp = time();

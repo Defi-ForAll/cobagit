@@ -458,23 +458,6 @@
                         $('#mdl-label').text('Ubah Data Produk');
                         // hapus class was-validated pada form
                         $("#frm-produk").removeClass('was-validated');
-
-
-                    //     data.append('nama_produk', $('#nama_produk').val());
-                    // data.append('kategori', $('#kategori').val());
-                    // data.append('datetime', $('#datetime').val());
-                    // data.append('harga', $('#harga').val());
-                    // data.append('stok_produk', $('#stok_produk').val());
-                    // data.append('foto1', $('#foto1')[0].files[0]);
-                    // data.append('foto2', $('#foto2')[0].files[0]);
-                    // data.append('foto3', $('#foto3')[0].files[0]);
-                    // data.append('keterangan', $('#keterangan').val());
-                    // let f_penyimpanan = [];
-                    // $('input[name="penyimpanan"]:checked').each(function(){
-                    //     f_penyimpanan.push($(this).val());
-                    // });
-                    // data.append('penyimpanan',f_penyimpanan);
-
                         // tampilkan data ke form
                         $('#id_produk').val(result.id_produk);
                         $('#nama_produk').val(result.judul);

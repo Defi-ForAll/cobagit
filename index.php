@@ -141,15 +141,15 @@
                 $result = $conn->query($sql);
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
-                    $potonggambar =  explode(";", $row['gambar']);
+                    $potonggambar =  explode(";", $row['thumbnail']);
             ?>
-             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+             <div class="col-lg-2 col-md-2 col-sm-6 mix oranges fresh-meat">
         <div class="featured__item">
             <a href="shop-details.php?produk=<?php echo $row['id_produk']; ?>&kat=<?php echo $row['id_kategori'] ?>">
-            <div class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/<?php echo $potonggambar[0]; ?>">            </div>
+            <div style="max-height: 150px; border-radius:10px" class="featured__item__pic set-bg" data-setbg="http://localhost/cakrasafety/stok/uploads/thumbs/<?php echo $potonggambar[0]; ?>">            </div>
             <div class="featured__item__text">
-                <h6><a href="shop-details.php?produk=<?php echo $row['id_produk'] ?>"><?php echo $row['judul']; ?></a></h6>
-                <h5><i class="fa fa-star"></i> 4.8 </h5>
+                <h6><b><?php echo $row['judul']; ?></b></h6>
+                <!-- <h5><i class="fa fa-star"></i> 4.8 </h5> -->
             </div>
             </a>
         </div>
