@@ -77,12 +77,12 @@ require_once "../config/database.php";
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/plugins/datatables/dataTables.bootstrap5.min.js"></script>
+    <script src="../assets/js/plugins/datatables/dataTables.bootstrap5.min.js"></script>
     <!-- Flatpickr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js" integrity="sha512-K/oyQtMXpxI4+K0W7H25UopjM8pzq0yrVdFdG21Fh5dBe91I40pDd9A4lzNlHPHBIP2cwZuoxaUSX0GJSObvGA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/id.min.js" integrity="sha512-XCJP/fJxX6uFAvyH4yZfgsbzmiBiS7hPiVEGw8C+372GAiMgLlPVy00o585G/kD+Shh2YWXr34Ui0lee7+x0ZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Bootstrap Notify -->
-    <script type="text/javascript" src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
     <!-- Bootbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

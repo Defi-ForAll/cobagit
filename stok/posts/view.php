@@ -34,7 +34,7 @@
                 <th class="text-center">Judul</th>
                 <th class="text-center">Deskripsi</th>
                 <th class="text-center">Pembuat</th>
-                <th class="text-center">Tanggak Upload</th>
+                <th class="text-center">Tanggal Upload</th>
                 <th class="text-center">Gambar</th>
                 <th class="text-center">Aksi</th>
             </thead>
@@ -63,10 +63,11 @@
                                     <input type="text" id="id_produk" name="id_produk" class="form-control" disabled>
                                     <div class="invalid-feedback">Id Produk tidak boleh kosong.</div>
                                 </div> -->
+                                <input type="hidden" id="id_post" name="id_post" class="form-control" disabled>
                                 <div class="mb-3 col-xl-6 pe-xl-3">
                                     <label class="form-label">Judul<span class="text-danger">*</span></label>
                                     <input type="text" id="judul" name="judul" class="form-control" required>
-                                    <input type="hidden" id="id_post" name="id_post" class="form-control" disabled>
+                                   
                                     <div class="invalid-feedback">Judul Tidak Boleh Kosong.</div>
                                 </div>
                                  <div class="col-xl-6">
@@ -101,7 +102,7 @@
                     <div class="row">
                         <div class="col-xl-6">
                             <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
-                            <textarea id="deskripsi" name="deskripsi" rows="10" cols="10" class="form-control" autocomplete="off" required></textarea>
+                            <textarea id="deskripsi" name="deskripsi" rows="8" cols="10" class="form-control" autocomplete="off" required></textarea>
                             <div class="invalid-feedback">Keterangan tidak boleh kosong.</div>
                         </div>
                     </div>
@@ -304,9 +305,9 @@
 
                         // tampilkan data ke form
                         $('#dt_judul').text(result.judul);
-                        // var foto = "<img src=\"uploads/thumbs/" + result.gambar + "\" class=\"border border-2 img-fluid rounded-3\" width=\"70px\" height=\"70px\">";
-                        // $('#dt_gambar').html(foto);                        
-                        $('#dt_gambar').text();
+                        var foto = "<img src=\"../uploads/post/" + result.gambar + "\" class=\"border border-2 img-fluid rounded-3\" width=\"70px\" height=\"70px\">";
+                        $('#dt_gambar').html(foto);                        
+                        // $('#dt_gambar').text();
                         $('#dt_author').text(result.creator);
                         $('#dt_deskripsi').text(result.deskripsi);
                         $('#dt_tanggal').text(result.tgl_upload);
@@ -341,7 +342,7 @@
             $.ajax({
                 type: "GET",                        // mengirim data dengan method GET 
                 url: "get_data.php",                // file proses get data
-                data: {id_produk: id_produk},       // data yang dikirim
+                data: {id_post: id_post},       // data yang dikirim
                 dataType: "JSON",                   // menggunakan tipe data JSON
                 // fungsi yang dijalankan sebelum ajax request dikirim
                 beforeSend: function() {
@@ -357,7 +358,7 @@
                         // tampilkan modal form
                         $('#mdl-form').modal('show');
                         // judul form
-                        $('#mdl-label').text('Ubah Data Produk');
+                        $('#mdl-label').text('Ubah Postingan');
                         // hapus class was-validated pada form
                         $("#frm-produk").removeClass('was-validated');
 
@@ -365,7 +366,11 @@
                         $('#id_post').val(result.id_post);
                         $('#judul').val(result.judul);
                         $('#nama_pembuat').val(result.creator);
-                        $('#foto').val(result.gambar);
+                        foto = "../uploads/post/" + result.gambar;
+                        $preview = '#foto_preview';
+                        $inputan = '';
+                        $($preview).html(preview_gambar($inputan,foto));
+                        $('#dt_gambar').html(foto); 
                         $('#datetime').val(result.tgl_upload);
                         $('#deskripsi').val(result.deskripsi);
                     }, 500);
@@ -475,6 +480,12 @@
 
             }
         }
+         // ketika foto 1-2-3 di klik akan memanggil fungsi input_image
+         $('#foto').change(function(){
+            $inputan = '#foto';
+            $preview = '#foto_preview';
+            return input_gambar($inputan, $preview);
+        });
          
 
         /** Proses
@@ -486,9 +497,7 @@
         // Proses Insert dan Update Data
         $('#btn-simpan').click(function() {
             // validasi form input
-            // jika ada input (required) yang kosong
-            let isChecked = $('input[name="penyimpanan"]:checked').length > 0;
-            if (($("#frm-produk")[0].checkValidity() === false) || !isChecked) {
+            if (($("#frm-produk")[0].checkValidity() === false)) {
                 // batalkan submit form
                 event.preventDefault()
                 event.stopPropagation()
@@ -501,10 +510,9 @@
                 // menghilangkan pesan warning pada tempat penyimpanan
                 $('.invalid-feedback').css({'display' : 'none'});
                 // jika form entri data produk yang ditampilkan, jalankan perintah insert
-                if ($('#mdl-label').text() == "Entri Data Produk") {
+                if ($('#mdl-label').text() == "Buat Postingan Baru") {
                     // ambil data hasil submit dari form dan buat variabel untuk menampung data menggunakan "FormData"
                     var data = new FormData();
-                    data.append('id_post', $('#id_post').val());
                     data.append('judul', $('#judul').val());
                     data.append('datetime', $('#datetime').val());
                     data.append('nama_pembuat', $('#nama_pembuat').val());
@@ -535,7 +543,7 @@
                                     // tampilkan pesan sukses simpan data
                                     $.notify({
                                         title: '<h5 class="font-weight-bold mb-1"><i class="fas fa-check-circle me-2"></i>Sukses!</h5>',
-                                        message: 'Data Barang berhasil disimpan.'
+                                        message: 'Postingan Berhasil di Upload'
                                     }, {
                                         type: 'success',
                                         allow_dismiss: false,
@@ -551,7 +559,7 @@
                                 // memberikan interval waktu sebelum fungsi dijalankan
                                 setTimeout(function() {
                                     // tutup preloader
-                                    $('.preloader').fadeOut('fast');s
+                                    $('.preloader').fadeOut('fast');
                                     // tampilkan pesan gagal dan error result
                                     $.notify({
                                         title: '<h5 class="font-weight-bold mb-1"><i class="fas fa-times-circle me-2"></i>Gagal!</h5>',
@@ -567,29 +575,16 @@
                     return false;
                 }
                 // jika form ubah data produk yang ditampilkan, jalankan perintah update
-                else if ($('#mdl-label').text() == "Ubah Data Produk") {
+                else if ($('#mdl-label').text() == "Ubah Postingan") {
                     // ambil data hasil submit dari form dan buat variabel untuk menampung data menggunakan "FormData"
                     var data = new FormData();
-                     var id_produk = data[10];
-                    data.append('id_produk',$('#id_produk').val());
-                    data.append('nama_produk', $('#nama_produk').val());
-                    data.append('kategori', $('#kategori').val());
+                    var id_post = data[1];
+                    data.append('judul', $('#judul').val());
+                    data.append('judul', id_post);
                     data.append('datetime', $('#datetime').val());
-                    data.append('harga', $('#harga').val());
-                    data.append('stok_produk', $('#stok_produk').val());
-                    data.append('foto1', $('#foto1')[0].files[0]);
-                    data.append('foto2', $('#foto2')[0].files[0]);
-                    data.append('foto3', $('#foto3')[0].files[0]);
-                    data.append('keterangan', $('#keterangan').val());
-                    let f_penyimpanan = [];
-                    $('input[name="penyimpanan"]:checked').each(function(){
-                        f_penyimpanan.push($(this).val());
-                    });
-                    data.append('penyimpanan',f_penyimpanan);
-
-
-                    // ajax request untuk update data produk
-                     var id_produk = data[10];
+                    data.append('nama_pembuat', $('#nama_pembuat').val());
+                    data.append('deskripsi', $('#deskripsi').val());
+                    data.append('foto', $('#foto')[0].files[0]);
                     $.ajax({
                         type: "POST",               // mengirim data dengan method POST 
                         url: "update.php",          // file proses update data
@@ -615,15 +610,11 @@
                                     if($('.preview-container').length){
                                         $('.preview-container').remove();
                                     }
-                                    for (var i = 1; i <= 3; i++) {
-                                        var $inputan = '#foto' + i;
-                                        $($inputan).val('');
-                                    }
-                                    
-                                    
+                                        $('#foto').val('');
+                                                                        
                                     $.notify({
                                         title: '<h5 class="font-weight-bold mb-1"><i class="fas fa-check-circle me-2"></i>Sukses!</h5>',
-                                        message: 'Data Stok Produk berhasil diubah.'
+                                        message: 'Postingan berhasil diubah.'
                                     }, {
                                         type: 'success',
                                         allow_dismiss: false,

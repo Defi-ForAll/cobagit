@@ -654,7 +654,6 @@
                     data.append('nama_produk', $('#nama_produk').val());
                     data.append('kategori', $('#kategori').val());
                     data.append('datetime', $('#datetime').val());
-                    console.log( $('#datetime').val());
                     data.append('harga', $('#harga').val());
                     data.append('stok_produk', $('#stok_produk').val());
                     data.append('foto1', $('#foto1')[0].files[0]);
@@ -751,10 +750,6 @@
                         f_penyimpanan.push($(this).val());
                     });
                     data.append('penyimpanan',f_penyimpanan);
-
-
-                    // ajax request untuk update data produk
-                     var id_produk = data[10];
                     $.ajax({
                         type: "POST",               // mengirim data dengan method POST 
                         url: "update.php",          // file proses update data
